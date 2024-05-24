@@ -1,13 +1,12 @@
 import taichi as ti
-from ti_types import coord
 
 
 @ti.data_oriented
 class Field:
 
-    alive = ti.Vector((255, 255, 255), ti.int32)
-    dead = ti.Vector((10, 10, 10), ti.int32)
-    grid = ti.Vector((30, 30, 30), ti.int32)
+    alive = ti.Vector((255, 255, 255), ti.u8)
+    dead = ti.Vector((10, 10, 10), ti.u8)
+    grid = ti.Vector((30, 30, 30), ti.u8)
 
     spawn_chance = 0.3
     grid_size = 0
@@ -16,7 +15,7 @@ class Field:
         self.size = size
         self.field = ti.field(ti.int32, (cols, rows))
         self.field_update = ti.field(ti.int32, (cols, rows))
-        self.pixels: ti.Field = ti.Vector.field(3, ti.int32, shape=(cols*size, rows*size))
+        self.pixels: ti.Field = ti.Vector.field(3, ti.u8, shape=(cols*size, rows*size))
 
     
     @ti.kernel
@@ -70,11 +69,6 @@ class Field:
             if value <= self.spawn_chance:
                 self._edit_neighbours(1, x, y)
                 self._edit_neighbours_update(1, x, y)
-
-
-    @ti.kernel
-    def draw_line(self, start_point: coord, end_point: coord, thickness: ti.int32):
-        pass
 
 
     @ti.func
