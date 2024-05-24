@@ -1,4 +1,4 @@
-import pygame, taichi
+import taichi
 from application import Application
 
 
@@ -7,7 +7,6 @@ ROWS = 700
 SIZE = 1
 
 taichi.init(arch=taichi.gpu)
-pygame.init()
 app = Application(COLS, ROWS, SIZE)
 
 app.run()
