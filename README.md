@@ -23,13 +23,17 @@ git clone https://github.com/wivest/Game-of-Life.git
 
 ### Packages
 
-Some external Python packages are required, including **Taichi**. To install them open cloned directory in terminal _(after_ `git clone` _run_ `cd Game-of-Life`_)_.
+Some external Python packages are required, including **Taichi**. To install them open cloned directory in terminal:
+
+```
+cd Game-of-Life
+```
+
+To collect missing packages execute `pip install` command:
 
 > [!TIP]  
 > _Optional step. Recommended to avoid package versions conflicts._<br>
 > To manage Python packages **virtual environment** can be created. More information can be found [here](https://docs.python.org/3/library/venv.html).
-
-To collect missing packages execute `pip install` command:
 
 ```
 pip install -r requirements.txt
