@@ -1,5 +1,5 @@
 import taichi as ti
-from aliases import *
+from .aliases import Color
 
 
 COLS = 1024

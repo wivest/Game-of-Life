@@ -1,6 +1,6 @@
 import taichi as ti
-from aliases import Color
-from parameters import *
+from .aliases import Color
+from .parameters import *
 
 
 @ti.data_oriented

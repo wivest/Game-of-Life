@@ -1,6 +1,6 @@
 import taichi as ti
-from application import Application
-from parameters import *
+from source.application import Application
+from source.parameters import *
 
 
 if __name__ == "__main__":

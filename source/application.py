@@ -1,5 +1,5 @@
 import taichi as ti
-from field import Field
+from .field import Field
 
 
 class Application:
