@@ -29,11 +29,11 @@ Some external Python packages are required, including **Taichi**. To install the
 cd Game-of-Life
 ```
 
-To collect missing packages execute `pip install` command:
-
 > [!TIP]  
 > _Optional step. Recommended to avoid package versions conflicts._<br>
 > To manage Python packages **virtual environment** can be created. More information can be found [here](https://docs.python.org/3/library/venv.html).
+
+To collect missing packages execute `pip install` command:
 
 ```
 pip install -r requirements.txt
