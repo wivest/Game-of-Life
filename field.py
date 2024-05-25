@@ -4,18 +4,15 @@ import taichi as ti
 @ti.data_oriented
 class Field:
 
-    alive = ti.Vector((255, 255, 255), ti.u8)
-    dead = ti.Vector((10, 10, 10), ti.u8)
-    grid = ti.Vector((30, 30, 30), ti.u8)
+    ALIVE = ti.Vector((255, 255, 255), ti.u8)
+    DEAD = ti.Vector((0, 0, 0), ti.u8)
 
-    spawn_chance = 0.3
-    grid_size = 0
+    CORRELATION = 0.2
     
-    def __init__(self, cols: int, rows: int, size: int):
-        self.size = size
+    def __init__(self, cols: int, rows: int):
         self.field = ti.field(ti.int32, (cols, rows))
         self.field_update = ti.field(ti.int32, (cols, rows))
-        self.pixels: ti.Field = ti.Vector.field(3, ti.u8, shape=(cols*size, rows*size))
+        self.pixels = ti.Vector.field(3, ti.u8, shape=(cols, rows))
 
     
     @ti.kernel
@@ -44,15 +41,10 @@ class Field:
     @ti.kernel
     def update_pixels(self):
         for x, y in self.pixels:
-            col = x // self.size
-            row = y // self.size
-
-            if self.field[col, row] % 2:
-                self.pixels[x, y] = self.alive
-            elif x % self.size < self.grid_size or y % self.size < self.grid_size:
-                self.pixels[x, y] = self.grid
+            if self.field[x, y] % 2:
+                self.pixels[x, y] = self.ALIVE
             else:
-                self.pixels[x, y] = self.dead
+                self.pixels[x, y] = self.DEAD
 
 
     @ti.kernel
@@ -66,14 +58,14 @@ class Field:
 
         for x, y in self.field:
             value: ti.float32 = ti.random(ti.float32)
-            if value <= self.spawn_chance:
+            if value <= self.CORRELATION:
                 self._edit_neighbours(1, x, y)
                 self._edit_neighbours_update(1, x, y)
 
 
     @ti.func
     def _edit_neighbours(self, difference: ti.int32, x: ti.int32, y: ti.int32):
-        self.field[x, y] += 1 * difference
+        self.field[x, y] += difference
         cols, rows = self.field.shape
         for n in range(9):
             self.field[(x - 1 + n%3) % cols, (y - 1 + n//3) % rows] += 2 * difference
@@ -81,7 +73,7 @@ class Field:
 
     @ti.func
     def _edit_neighbours_update(self, difference: ti.int32, x: ti.int32, y: ti.int32):
-        self.field_update[x, y] += 1 * difference
+        self.field_update[x, y] += difference
         cols, rows = self.field_update.shape
         for n in range(9):
             self.field_update[(x - 1 + n%3) % cols, (y - 1 + n//3) % rows] += 2 * difference

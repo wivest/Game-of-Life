@@ -4,10 +4,10 @@ from field import Field
 
 class Application:
 
-    def __init__(self, cols: int, rows: int, size: int):
+    def __init__(self, cols: int, rows: int):
         self.display = ti.GUI("Game of Life", (cols, rows), fast_gui=True)
         self.display.fps_limit = 1000
-        self.field = Field(cols, rows, size)
+        self.field = Field(cols, rows)
 
 
     def run(self):
