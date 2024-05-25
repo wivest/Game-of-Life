@@ -8,6 +8,7 @@ class Application:
         self.display = ti.GUI("Game of Life", (cols, rows), fast_gui=True)
         self.display.fps_limit = 1000
         self.field = Field(cols, rows)
+        self.field.randomize()
 
 
     def run(self):
@@ -18,7 +19,6 @@ class Application:
 
 
     def render(self):
-        self.field.update_pixels()
         self.display.set_image(self.field.pixels)
         self.display.show()
 
@@ -28,5 +28,3 @@ class Application:
             if event.type == ti.GUI.PRESS:
                 if event.key == "r":
                     self.field.randomize()
-                elif event.key == "c":
-                    self.field.clear()

@@ -1,11 +1,8 @@
-import taichi
+import taichi as ti
 from application import Application
+from parameters import *
 
 
-COLS = 1400
-ROWS = 700
-
-taichi.init(arch=taichi.gpu)
+ti.init(arch=ARCH, kernel_profiler=True)
 app = Application(COLS, ROWS)
-
 app.run()
