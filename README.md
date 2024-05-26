@@ -4,6 +4,20 @@
 
 ## Features
 
+### Capabilities
+
+-   Standard [rules](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules)
+-   [Finite field as todorial array](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Algorithms:~:text=In%20principle%2C%20the,M%C3%B6bius%20strip.)
+-   Instant in-app restart
+
+### Settings
+
+-   Field size
+-   Cells color
+-   Start condition
+-   Backend computing
+-   Profiling
+
 ## Installation
 
 ### Prerequisites
