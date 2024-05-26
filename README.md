@@ -10,7 +10,7 @@
 
 -   Standard [rules](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules)
 -   [Finite field as todorial array](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Algorithms:~:text=In%20principle%2C%20the,M%C3%B6bius%20strip.)
--   Instant in-app restart
+-   Instant in-game restart
 
 ### Settings
 
@@ -55,13 +55,17 @@ To collect missing packages execute `pip install` command:
 pip install -r requirements.txt
 ```
 
-### Run
+## Run the project
 
-Launch `main.py` file by executing `python` command:
+Open project folder in terminal and launch `main.py` file by executing `python` command:
 
 ```
 python main.py
 ```
+
+### Actions
+
+You can restart simulation in-game by pressing `R` key.
 
 ## Configuration
 
