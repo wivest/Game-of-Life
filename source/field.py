@@ -33,7 +33,7 @@ class Field:
 
         for x, y in self.cells:
             value = ti.random()
-            if value <= CORRELATION:
+            if value <= PERCENTAGE:
                 self.edit_neighbours(1, x, y)
 
 
