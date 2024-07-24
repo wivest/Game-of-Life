@@ -65,7 +65,8 @@ python main.py
 
 ### Actions
 
-You can restart simulation in-game by pressing `R` key.
+-   Restart by pressing `R` key.
+-   Pause by pressing `Spacebar` key.
 
 ## Configuration
 
