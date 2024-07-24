@@ -69,14 +69,14 @@ You can restart simulation in-game by pressing `R` key.
 
 ## Configuration
 
-By editing parameters in [`source/parameters.py`](source/parameters.py) you can customize application behaviour. Here are listed available ones for user:
+By editing parameters in [`parameters.json`](parameters.json) you can customize behaviour of application. Here available ones for user are listed:
 
-| Name         | Type    | Description                                                                                        |
-| ------------ | ------- | -------------------------------------------------------------------------------------------------- |
-| `COLS`       | `int`   | Number of field columns.<br>_Default: `1024`_                                                      |
-| `ROWS`       | `int`   | Number of field rows.<br>_Default: `512`_                                                          |
-| `ARCH`       | _other_ | Backend architecture used by Taichi.<br>_Suggested: `ti.gpu` and `ti.cpu`._<br>_Default: `ti.gpu`_ |
-| `PROFILING`  | `bool`  | Enable profiling of Taichi kernel in form of terminal output.<br>_Default: `False`_                |
-| `ALIVE`      | `Color` | Alive cell color in RGB format.<br>_Default: `Color(255, 255, 255)`_                               |
-| `DEAD`       | `Color` | Dead cell color in RGB format.<br>_Default: `Color(0, 0, 0)`_                                      |
-| `PERCENTAGE` | `float` | Percentage of alive cells when randomizing field.<br>_Default: `0.1`_                              |
+| Name         | Type     | Description                                                                                     |
+| ------------ | -------- | ----------------------------------------------------------------------------------------------- |
+| `columns`    | `int`    | Number of field columns.<br>_Default: `1024`_                                                   |
+| `rows`       | `int`    | Number of field rows.<br>_Default: `512`_                                                       |
+| `arch`       | `string` | Backend architecture used by Taichi.<br>_Suggested: `"gpu"` and `"cpu"`._<br>_Default: `"gpu"`_ |
+| `profiling`  | `bool`   | Enable profiling of Taichi kernel in form of terminal output.<br>_Default: `false`_             |
+| `alive`      | `Array`  | Alive cell color in RGB format.<br>_Default: `[255, 255, 255]`_                                 |
+| `dead`       | `Array`  | Dead cell color in RGB format.<br>_Default: `[0, 0, 0]`_                                        |
+| `percentage` | `float`  | Percentage of alive cells when randomizing field.<br>_Default: `0.1`_                           |
