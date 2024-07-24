@@ -4,6 +4,8 @@ from .field import Field
 
 class Application:
 
+    processing: bool = True
+
     def __init__(self, cols: int, rows: int):
         self.window = ti.ui.Window("Game of Life", (cols, rows))
         self.display = self.window.get_canvas()
@@ -14,7 +16,8 @@ class Application:
     def run(self):
         while self.window.running:
             self.handle_events()
-            self.field.compute()
+            if self.processing:
+                self.field.compute()
             self.render()
 
 
@@ -27,3 +30,5 @@ class Application:
         for event in self.window.get_events(ti.ui.PRESS):
             if event.key == "r":
                 self.field.randomize()
+            if event.key == ti.ui.SPACE:
+                self.processing = not self.processing
