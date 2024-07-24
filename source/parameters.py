@@ -1,12 +1,20 @@
+import json
 import taichi as ti
 from .aliases import Color
 
 
-COLS = 1024
-ROWS = 512
-ARCH = ti.gpu
-PROFILING = False
+PATH = "parameters.json"
 
-ALIVE = Color(255, 255, 255)
-DEAD = Color(0, 0, 0)
-PERCENTAGE = 0.1
+
+with open(PATH) as f:
+	data = json.load(f)
+
+
+COLS = data["columns"]
+ROWS = data["rows"]
+ARCH = getattr(ti, data["arch"])
+PROFILING = data["profiling"]
+
+ALIVE = Color(*data["alive"])
+DEAD = Color(*data["dead"])
+PERCENTAGE = data["percentage"]
