@@ -67,6 +67,7 @@ python main.py
 
 -   Restart by pressing `R` key.
 -   Pause by pressing `Spacebar` key.
+-   Draw by pressing left mouse button.
 
 ## Configuration
 
