@@ -39,11 +39,16 @@ class Field:
 
 
     @ti.kernel
-    def paint_cell(self, x: int, y: int):
-        if self.cells[x, y] % 2 == 0:
-            self.edit_neighbours(1, x, y)
-            self.edit_neighbours_after(1, x, y)
-            self.redraw_pixel(x, y, ALIVE)
+    def paint_cell(self, x: int, y: int, state: bool):
+        if bool(self.cells[x, y] % 2) != state:
+            if state:
+                self.edit_neighbours(1, x, y)
+                self.edit_neighbours_after(1, x, y)
+                self.redraw_pixel(x, y, ALIVE)
+            elif not state:
+                self.edit_neighbours(-1, x, y)
+                self.edit_neighbours_after(-1, x, y)
+                self.redraw_pixel(x, y, DEAD)
 
 
     @ti.func

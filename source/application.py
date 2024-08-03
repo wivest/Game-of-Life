@@ -1,11 +1,18 @@
+from enum import Enum
 import taichi as ti
 from .field import Field
+
+
+class Mode(Enum):
+    VIEW = 0
+    DRAWING = 1
+    ERASING = 2
 
 
 class Application:
 
     processing: bool = True
-    drawing: bool = False
+    mode: Mode = Mode.VIEW
 
     def __init__(self, cols: int, rows: int):
         self.window = ti.ui.Window("Game of Life", (cols, rows))
@@ -17,11 +24,14 @@ class Application:
     def run(self):
         while self.window.running:
             self.handle_events()
-            if not self.drawing:
-                if self.processing:
-                    self.field.compute()
-            else:
-                self.field.paint_cell(*self.get_cursor_coordinates())
+            match self.mode:
+                case Mode.VIEW:
+                    if self.processing:
+                        self.field.compute()
+                case Mode.DRAWING:
+                    self.field.paint_cell(*self.get_cursor_coordinates(), True)
+                case Mode.ERASING:
+                    self.field.paint_cell(*self.get_cursor_coordinates(), False)
             self.render()
 
 
@@ -32,16 +42,22 @@ class Application:
 
     def handle_events(self):
         for event in self.window.get_events(ti.ui.PRESS):
-            if event.key == "r":
-                self.field.randomize()
-            if event.key == ti.ui.SPACE:
-                self.processing = not self.processing
-            if event.key == ti.ui.LMB:
-                self.drawing = True
+            match event.key:
+                case "r":
+                    self.field.randomize()
+                case ti.ui.SPACE:
+                    self.processing = not self.processing
+                case ti.ui.LMB:
+                    self.mode = Mode.DRAWING
+                case ti.ui.RMB:
+                    self.mode = Mode.ERASING
 
         for event in self.window.get_events(ti.ui.RELEASE):
-            if event.key == ti.ui.LMB:
-                self.drawing = False
+            match event.key:
+                case ti.ui.LMB:
+                    self.mode = Mode.VIEW
+                case ti.ui.RMB:
+                    self.mode = Mode.VIEW
 
     
     def get_cursor_coordinates(self) -> tuple[int, int]:
