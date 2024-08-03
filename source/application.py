@@ -5,6 +5,7 @@ from .field import Field
 class Application:
 
     processing: bool = True
+    drawing: bool = False
 
     def __init__(self, cols: int, rows: int):
         self.window = ti.ui.Window("Game of Life", (cols, rows))
@@ -16,8 +17,11 @@ class Application:
     def run(self):
         while self.window.running:
             self.handle_events()
-            if self.processing:
-                self.field.compute()
+            if not self.drawing:
+                if self.processing:
+                    self.field.compute()
+            else:
+                pass
             self.render()
 
 
@@ -32,3 +36,9 @@ class Application:
                 self.field.randomize()
             if event.key == ti.ui.SPACE:
                 self.processing = not self.processing
+            if event.key == ti.ui.LMB:
+                self.drawing = True
+
+        for event in self.window.get_events(ti.ui.RELEASE):
+            if event.key == ti.ui.LMB:
+                self.drawing = False
