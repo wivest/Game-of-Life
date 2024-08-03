@@ -10,7 +10,8 @@
 
 -   Standard [rules](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules)
 -   [Finite field as todorial array](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Algorithms:~:text=In%20principle%2C%20the,M%C3%B6bius%20strip.)
--   Instant in-game restart
+-   In-game restart, pause
+-   Cell drawing
 
 ### Settings
 
@@ -19,6 +20,7 @@
 -   Start condition
 -   Backend computing
 -   Profiling
+-   Field generation
 
 ## Installation
 
@@ -63,7 +65,7 @@ Open project folder in terminal and launch `main.py` file by executing `python` 
 python main.py
 ```
 
-### Actions
+### Actions in-game
 
 -   Restart by pressing `R` key.
 -   Pause by pressing `Spacebar` key.
