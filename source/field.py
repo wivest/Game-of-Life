@@ -35,6 +35,7 @@ class Field:
             value = ti.random()
             if value <= PERCENTAGE:
                 self.edit_neighbours(1, x, y)
+                self.redraw_pixel(x, y, ALIVE)
 
 
     @ti.kernel
