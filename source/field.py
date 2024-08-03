@@ -37,6 +37,12 @@ class Field:
                 self.edit_neighbours(1, x, y)
 
 
+    @ti.kernel
+    def paint_cell(self, x: int, y: int):
+        self.edit_neighbours(1, x, y)
+        self.redraw_pixel(x, y, ALIVE)
+
+
     @ti.func
     def redraw_pixel(self, x: int, y: int, color: Color): # type: ignore
         self.pixels[x, y] = color

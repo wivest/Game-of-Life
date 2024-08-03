@@ -21,7 +21,7 @@ class Application:
                 if self.processing:
                     self.field.compute()
             else:
-                pass
+                self.field.paint_cell(*self.get_cursor_coordinates())
             self.render()
 
 
