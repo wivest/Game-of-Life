@@ -17,10 +17,10 @@ class Field:
         for x, y in self.cells:
             if self.cells[x, y] % 2 == 1:
                 if self.cells[x, y] != 7 and self.cells[x, y] != 9:
-                    self.edit_neighbours(-1, x, y)
+                    self.edit_neighbours_after(-1, x, y)
                     self.redraw_pixel(x, y, DEAD)
             elif self.cells[x, y] == 6:
-                self.edit_neighbours(1, x, y)
+                self.edit_neighbours_after(1, x, y)
                 self.redraw_pixel(x, y, ALIVE)
 
         for x, y in self.cells:
@@ -34,14 +34,16 @@ class Field:
         for x, y in self.cells:
             value = ti.random()
             if value <= PERCENTAGE:
-                self.edit_neighbours(1, x, y)
+                self.edit_neighbours_after(1, x, y)
                 self.redraw_pixel(x, y, ALIVE)
 
 
     @ti.kernel
     def paint_cell(self, x: int, y: int):
-        self.edit_neighbours(1, x, y)
-        self.redraw_pixel(x, y, ALIVE)
+        if self.cells[x, y] % 2 == 0:
+            self.edit_neighbours(1, x, y)
+            self.edit_neighbours_after(1, x, y)
+            self.redraw_pixel(x, y, ALIVE)
 
 
     @ti.func
@@ -58,8 +60,16 @@ class Field:
 
 
     @ti.func
-    def edit_neighbours(self, difference: ti.int32, x: int, y: int):
+    def edit_neighbours_after(self, difference: ti.int32, x: int, y: int):
         self.cells_after[x, y] += difference
         cols, rows = self.cells_after.shape
         for n in range(9):
             self.cells_after[(x - 1 + n%3) % cols, (y - 1 + n//3) % rows] += 2 * difference
+
+            
+    @ti.func
+    def edit_neighbours(self, difference: ti.int32, x: int, y: int):
+        self.cells[x, y] += difference
+        cols, rows = self.cells.shape
+        for n in range(9):
+            self.cells[(x - 1 + n%3) % cols, (y - 1 + n//3) % rows] += 2 * difference
