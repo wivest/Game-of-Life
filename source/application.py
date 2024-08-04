@@ -15,6 +15,7 @@ class Application:
     mode: Mode = Mode.VIEW
 
     cursor: tuple[int, int]
+    brush: int = 1
 
     def __init__(self, cols: int, rows: int, size: int):
         self.window = ti.ui.Window("Game of Life", (cols * size, rows * size))
@@ -32,11 +33,11 @@ class Application:
                         self.field.compute()
                 case Mode.DRAWING:
                     cursor_new: tuple[int, int] = self.get_cursor_coordinates()
-                    self.field.draw_line(*self.cursor, *cursor_new, True, 1)
+                    self.field.draw_line(*self.cursor, *cursor_new, True, self.brush)
                     self.cursor = cursor_new
                 case Mode.ERASING:
                     cursor_new: tuple[int, int] = self.get_cursor_coordinates()
-                    self.field.draw_line(*self.cursor, *cursor_new, False, 1)
+                    self.field.draw_line(*self.cursor, *cursor_new, False, self.brush)
                     self.cursor = cursor_new
             self.render()
 
@@ -53,6 +54,10 @@ class Application:
                     self.field.randomize()
                 case "c":
                     self.field.clear()
+                case ti.ui.UP:
+                    self.brush += 1
+                case ti.ui.DOWN:
+                    self.brush = max(1, self.brush - 1)
                 case ti.ui.SPACE:
                     self.processing = not self.processing
                 case ti.ui.LMB:
