@@ -22,10 +22,10 @@ class Field:
             if self.cells[x, y] % 2 == 1:
                 if self.cells[x, y] != 7 and self.cells[x, y] != 9:
                     self.edit_neighbours_after(-1, x, y)
-                    self.redraw_pixel(x, y, DEAD)
+                    self.redraw_cell(x, y, DEAD)
             elif self.cells[x, y] == 6:
                 self.edit_neighbours_after(1, x, y)
-                self.redraw_pixel(x, y, ALIVE)
+                self.redraw_cell(x, y, ALIVE)
 
         for x, y in self.cells:
             self.cells[x, y] = self.cells_after[x, y]
@@ -36,7 +36,7 @@ class Field:
         for x, y in self.cells:
             self.cells[x, y] = 0
             self.cells_after[x, y] = 0
-            self.redraw_pixel(x, y, DEAD)
+            self.redraw_cell(x, y, DEAD)
 
 
     @ti.kernel
@@ -47,7 +47,7 @@ class Field:
             value = ti.random()
             if value <= PERCENTAGE:
                 self.edit_neighbours_after(1, x, y)
-                self.redraw_pixel(x, y, ALIVE)
+                self.redraw_cell(x, y, ALIVE)
 
 
     @ti.kernel
@@ -66,16 +66,18 @@ class Field:
             if state:
                 self.edit_neighbours(1, x, y)
                 self.edit_neighbours_after(1, x, y)
-                self.redraw_pixel(x, y, ALIVE)
+                self.redraw_cell(x, y, ALIVE)
             elif not state:
                 self.edit_neighbours(-1, x, y)
                 self.edit_neighbours_after(-1, x, y)
-                self.redraw_pixel(x, y, DEAD)
+                self.redraw_cell(x, y, DEAD)
 
 
     @ti.func
-    def redraw_pixel(self, x: int, y: int, color: Color): # type: ignore
-        self.pixels[x, y] = color
+    def redraw_cell(self, x: int, y: int, color: Color): # type: ignore
+        for i in range(x * self.size, x * self.size + self.size):
+            for j in range(y * self.size, y * self.size + self.size):
+                self.pixels[i, j] = color
 
 
     @ti.func
@@ -83,7 +85,7 @@ class Field:
         for x, y in self.cells:
             self.cells[x, y] = 0
             self.cells_after[x, y] = 0
-            self.redraw_pixel(x, y, DEAD)
+            self.redraw_cell(x, y, DEAD)
 
 
     @ti.func
