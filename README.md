@@ -69,7 +69,8 @@ python main.py
 
 -   Restart by pressing `R` key.
 -   Pause by pressing `Spacebar` key.
--   Draw by pressing left mouse button.
+-   Draw by pressing and dragging left mouse button.
+-   Erase by pressing and dragging right mouse button.
 
 ## Configuration
 
