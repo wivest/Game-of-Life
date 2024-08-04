@@ -35,7 +35,9 @@ class Application:
                     self.field.draw_line(*self.cursor, *cursor_new, True)
                     self.cursor = cursor_new
                 case Mode.ERASING:
-                    self.field.paint_cell(*self.get_cursor_coordinates(), False)
+                    cursor_new: tuple[int, int] = self.get_cursor_coordinates()
+                    self.field.draw_line(*self.cursor, *cursor_new, False)
+                    self.cursor = cursor_new
             self.render()
 
 
