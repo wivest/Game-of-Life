@@ -77,6 +77,6 @@ class Application:
         cursor_pos = (clip(cursor_pos[0]), clip(cursor_pos[1]))
         window_size = self.window.get_window_shape()
 
-        x = int(cursor_pos[0] * window_size[0] // self.field.size)
-        y = int(cursor_pos[1] * window_size[1] // self.field.size)
+        x = int(cursor_pos[0] * (window_size[0] - 1) // self.field.size)
+        y = int(cursor_pos[1] * (window_size[1] - 1) // self.field.size)
         return (x, y)
