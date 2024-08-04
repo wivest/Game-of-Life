@@ -16,10 +16,10 @@ class Application:
 
     cursor: tuple[int, int]
 
-    def __init__(self, cols: int, rows: int):
-        self.window = ti.ui.Window("Game of Life", (cols, rows))
+    def __init__(self, cols: int, rows: int, size: int):
+        self.window = ti.ui.Window("Game of Life", (cols * size, rows * size))
         self.display = self.window.get_canvas()
-        self.field = Field(cols, rows)
+        self.field = Field(cols, rows, size)
         self.field.randomize()
 
 

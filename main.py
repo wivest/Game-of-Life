@@ -5,7 +5,7 @@ from source.parameters import *
 
 if __name__ == "__main__":
 	ti.init(arch=ARCH, kernel_profiler=True)
-	app = Application(COLS, ROWS)
+	app = Application(COLS, ROWS, SIZE)
 	app.run()
 	
 	if PROFILING:

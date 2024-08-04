@@ -12,6 +12,7 @@ with open(PATH) as f:
 
 COLS = data["columns"]
 ROWS = data["rows"]
+SIZE = data["size"]
 ARCH = getattr(ti, data["arch"])
 PROFILING = data["profiling"]
 

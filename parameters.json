@@ -1,6 +1,7 @@
 {
 	"columns": 1024,
 	"rows": 512,
+	"size": 1,
 	"arch": "gpu",
 	"profiling": false,
 

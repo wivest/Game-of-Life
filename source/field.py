@@ -5,11 +5,15 @@ from .parameters import *
 
 @ti.data_oriented
 class Field:
+
+    size: int
     
-    def __init__(self, cols: int, rows: int):
+    def __init__(self, cols: int, rows: int, cell_pixels: int):
+        self.size = cell_pixels
+
         self.cells = ti.field(ti.int32, (cols, rows))
         self.cells_after = ti.field(ti.int32, (cols, rows))
-        self.pixels = Color.field(shape=(cols, rows))
+        self.pixels = Color.field(shape=(cols * self.size, rows * self.size))
 
     
     @ti.kernel
