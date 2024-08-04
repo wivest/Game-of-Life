@@ -39,13 +39,13 @@ class Field:
 
 
     @ti.kernel
-    def draw_line(self, x1: int, y1: int, x2: int, y2: int):
+    def draw_line(self, x1: int, y1: int, x2: int, y2: int, state: bool):
         for x in range(min(x1, x2), max(x1, x2)):
             y = y1 + (y2 - y1) * (x - x1) / (x2 - x1)
-            self.paint_cell(x, y, True)
+            self.paint_cell(x, y, state)
         for y in range(min(y1, y2), max(y1, y2)):
             x = x1 + (x2 - x1) * (y - y1) / (y2 - y1)
-            self.paint_cell(x, y, True)
+            self.paint_cell(x, y, state)
 
 
     @ti.func
