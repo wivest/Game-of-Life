@@ -10,8 +10,9 @@
 
 -   Standard [rules](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules)
 -   [Finite field as todorial array](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Algorithms:~:text=In%20principle%2C%20the,M%C3%B6bius%20strip.)
--   In-game restart, pause
--   Cell drawing
+-   Randomize, clear field
+-   Pause simulation
+-   Draw cells
 
 ### Settings
 
@@ -67,7 +68,8 @@ python main.py
 
 ### Actions in-game
 
--   Restart by pressing `R` key.
+-   Randomize by pressing `R` key.
+-   Clear by pressing `C` key.
 -   Pause by pressing `Spacebar` key.
 -   Draw by pressing and dragging left mouse button.
 -   Erase by pressing and dragging right mouse button.
