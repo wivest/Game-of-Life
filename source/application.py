@@ -51,6 +51,8 @@ class Application:
             match event.key:
                 case "r":
                     self.field.randomize()
+                case "c":
+                    self.field.clear()
                 case ti.ui.SPACE:
                     self.processing = not self.processing
                 case ti.ui.LMB:

@@ -28,8 +28,16 @@ class Field:
 
 
     @ti.kernel
+    def clear(self):
+        for x, y in self.cells:
+            self.cells[x, y] = 0
+            self.cells_after[x, y] = 0
+            self.redraw_pixel(x, y, DEAD)
+
+
+    @ti.kernel
     def randomize(self):
-        self.clear()
+        self.empty()
 
         for x, y in self.cells:
             value = ti.random()
@@ -67,7 +75,7 @@ class Field:
 
 
     @ti.func
-    def clear(self):
+    def empty(self):
         for x, y in self.cells:
             self.cells[x, y] = 0
             self.cells_after[x, y] = 0
