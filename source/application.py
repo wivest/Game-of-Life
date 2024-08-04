@@ -32,11 +32,11 @@ class Application:
                         self.field.compute()
                 case Mode.DRAWING:
                     cursor_new: tuple[int, int] = self.get_cursor_coordinates()
-                    self.field.draw_line(*self.cursor, *cursor_new, True)
+                    self.field.draw_line(*self.cursor, *cursor_new, True, 1)
                     self.cursor = cursor_new
                 case Mode.ERASING:
                     cursor_new: tuple[int, int] = self.get_cursor_coordinates()
-                    self.field.draw_line(*self.cursor, *cursor_new, False)
+                    self.field.draw_line(*self.cursor, *cursor_new, False, 1)
                     self.cursor = cursor_new
             self.render()
 

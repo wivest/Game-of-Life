@@ -51,17 +51,17 @@ class Field:
 
 
     @ti.kernel
-    def draw_line(self, x1: int, y1: int, x2: int, y2: int, state: bool):
+    def draw_line(self, x1: int, y1: int, x2: int, y2: int, state: bool, brush: int):
         for x in range(min(x1, x2), max(x1, x2) + 1):
             y = y1 + (y2 - y1) * (x - x1) / (x2 - x1)
             if x1 == x2:
                 y = y1
-            self.paint_cell(x, y, state)
+            self.paint_brush(x, y, state, brush)
         for y in range(min(y1, y2), max(y1, y2) + 1):
             x = x1 + (x2 - x1) * (y - y1) / (y2 - y1)
             if y1 == y2:
                 x = x1
-            self.paint_cell(x, y, state)
+            self.paint_brush(x, y, state, brush)
 
 
     @ti.func
@@ -75,6 +75,15 @@ class Field:
                 self.edit_neighbours(-1, x, y)
                 self.edit_neighbours_after(-1, x, y)
                 self.redraw_cell(x, y, DEAD)
+
+
+    @ti.func
+    def paint_brush(self, x: int, y: int, state: bool, brush: int):
+        cols, rows = self.cells.shape
+        side = 2 * brush - 1
+
+        for n in range(side * side):
+            self.paint_cell((x - brush + 1 + n%side) % cols, (y - brush + 1 + n//side) % rows, state)
 
 
     @ti.func
