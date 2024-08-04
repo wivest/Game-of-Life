@@ -14,6 +14,8 @@ class Application:
     processing: bool = True
     mode: Mode = Mode.VIEW
 
+    cursor: tuple[int, int]
+
     def __init__(self, cols: int, rows: int):
         self.window = ti.ui.Window("Game of Life", (cols, rows))
         self.display = self.window.get_canvas()
@@ -29,7 +31,9 @@ class Application:
                     if self.processing:
                         self.field.compute()
                 case Mode.DRAWING:
-                    self.field.paint_cell(*self.get_cursor_coordinates(), True)
+                    cursor_new: tuple[int, int] = self.get_cursor_coordinates()
+                    self.field.draw_line(*self.cursor, *cursor_new)
+                    self.cursor = cursor_new
                 case Mode.ERASING:
                     self.field.paint_cell(*self.get_cursor_coordinates(), False)
             self.render()
@@ -49,8 +53,10 @@ class Application:
                     self.processing = not self.processing
                 case ti.ui.LMB:
                     self.mode = Mode.DRAWING
+                    self.cursor = self.get_cursor_coordinates()
                 case ti.ui.RMB:
                     self.mode = Mode.ERASING
+                    self.cursor = self.get_cursor_coordinates()
 
         for event in self.window.get_events(ti.ui.RELEASE):
             match event.key:
