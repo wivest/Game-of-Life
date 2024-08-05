@@ -74,6 +74,7 @@ python main.py
 -   Pause by pressing `Spacebar` key.
 -   Draw by pressing and dragging left mouse button.
 -   Erase by pressing and dragging right mouse button.
+-   Change brush size by pressing `UP` and `DOWN` keys.
 
 ## Configuration
 
