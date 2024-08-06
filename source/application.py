@@ -64,10 +64,8 @@ class Application:
                     self.processing = not self.processing
                 case ti.ui.LMB:
                     self.mode = Mode.DRAWING
-                    self.cursor = self.get_cursor_coordinates()
                 case ti.ui.RMB:
                     self.mode = Mode.ERASING
-                    self.cursor = self.get_cursor_coordinates()
 
         for event in self.window.get_events(ti.ui.RELEASE):
             match event.key:
