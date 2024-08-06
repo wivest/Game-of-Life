@@ -27,18 +27,18 @@ class Application:
     def run(self):
         while self.window.running:
             self.handle_events()
+            cursor_new: tuple[int, int] = self.get_cursor_coordinates()
+
             match self.mode:
                 case Mode.VIEW:
                     if self.processing:
                         self.field.compute()
                 case Mode.DRAWING:
-                    cursor_new: tuple[int, int] = self.get_cursor_coordinates()
                     self.field.draw_line(*self.cursor, *cursor_new, True, self.brush)
-                    self.cursor = cursor_new
                 case Mode.ERASING:
-                    cursor_new: tuple[int, int] = self.get_cursor_coordinates()
                     self.field.draw_line(*self.cursor, *cursor_new, False, self.brush)
-                    self.cursor = cursor_new
+            
+            self.cursor = cursor_new
             self.render()
 
 
