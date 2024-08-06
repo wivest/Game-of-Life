@@ -66,6 +66,7 @@ class Application:
                     self.mode = Mode.DRAWING
                 case ti.ui.RMB:
                     self.mode = Mode.ERASING
+                    self.field.restore_brush(*self.cursor, self.brush)
 
         for event in self.window.get_events(ti.ui.RELEASE):
             match event.key:
