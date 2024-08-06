@@ -14,7 +14,7 @@ class Application:
     processing: bool = True
     mode: Mode = Mode.VIEW
 
-    cursor: tuple[int, int]
+    cursor: tuple[int, int] = (0, 0)
     brush: int = 1
 
     def __init__(self, cols: int, rows: int, size: int):
@@ -33,6 +33,8 @@ class Application:
                 case Mode.VIEW:
                     if self.processing:
                         self.field.compute()
+                        self.field.restore_brush(*self.cursor, self.brush + 1)
+                        self.field.highlight_brush(*cursor_new, self.brush)
                 case Mode.DRAWING:
                     self.field.draw_line(*self.cursor, *cursor_new, True, self.brush)
                 case Mode.ERASING:

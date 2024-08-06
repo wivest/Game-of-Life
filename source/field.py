@@ -64,6 +64,28 @@ class Field:
             self.paint_brush(x, y, state, brush)
 
 
+    @ti.kernel
+    def highlight_brush(self, x: int, y: int, brush: int):
+        cols, rows = self.cells.shape
+        side = 2 * brush - 1
+
+        for n in range(side * side):
+            i, j = (x - brush + 1 + n%side) % cols, (y - brush + 1 + n//side) % rows
+            if self.cells_after[i, j] % 2 == 0:
+                self.redraw_cell(i, j, HIGHLIGHT)
+
+
+    @ti.kernel
+    def restore_brush(self, x: int, y: int, brush: int):
+        cols, rows = self.cells.shape
+        side = 2 * brush - 1
+
+        for n in range(side * side):
+            i, j = (x - brush + 1 + n%side) % cols, (y - brush + 1 + n//side) % rows
+            color = ALIVE if self.cells_after[i, j] % 2 == 1 else DEAD
+            self.redraw_cell(i, j, color)
+
+
     @ti.func
     def paint_cell(self, x: int, y: int, state: bool):
         if bool(self.cells[x, y] % 2) != state:
