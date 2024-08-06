@@ -18,4 +18,5 @@ PROFILING = data["profiling"]
 
 ALIVE = Color(*data["alive"])
 DEAD = Color(*data["dead"])
+HIGHLIGHT = Color(*data["highlight"])
 PERCENTAGE = data["percentage"]

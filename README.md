@@ -89,4 +89,5 @@ By editing parameters in [`parameters.json`](parameters.json) you can customize 
 | `profiling`  | `bool`   | Enable profiling of Taichi kernel in form of terminal output.<br>_Default: `false`_             |
 | `alive`      | `Array`  | Alive cell color in RGB format.<br>_Default: `[255, 255, 255]`_                                 |
 | `dead`       | `Array`  | Dead cell color in RGB format.<br>_Default: `[0, 0, 0]`_                                        |
+| `highlight`  | `Array`  | Highlighted cell color in RGB format.<br>_Default: `[50, 50, 50]`_                              |
 | `percentage` | `float`  | Percentage of alive cells when randomizing field.<br>_Default: `0.1`_                           |
