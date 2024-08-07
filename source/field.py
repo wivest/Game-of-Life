@@ -27,6 +27,10 @@ class Field:
                 self.edit_neighbours_after(1, x, y)
                 self.redraw_cell(x, y, ALIVE)
 
+            neighbours = self.cells[x, y] // 2
+            if neighbours != self.count_neighbours(x, y):
+                self.redraw_cell(x, y, DEBUG_COLOR)
+
         for x, y in self.cells:
             self.cells[x, y] = self.cells_after[x, y]
 
@@ -145,4 +149,6 @@ class Field:
         cols, rows = self.cells.shape
 
         for n in range(9):
-            count += self.cells[(x - 1 + n%3) % cols, (y - 1 + n//3) % rows]
+            count += self.cells[(x - 1 + n%3) % cols, (y - 1 + n//3) % rows] % 2
+
+        return count
