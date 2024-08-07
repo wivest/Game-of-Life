@@ -5,6 +5,8 @@ from .aliases import Color
 
 PATH = "parameters.json"
 
+DEBUG_COLOR = Color(255, 0, 0)
+
 
 with open(PATH) as f:
 	data = json.load(f)
