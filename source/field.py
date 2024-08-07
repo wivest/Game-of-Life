@@ -137,3 +137,12 @@ class Field:
         cols, rows = self.cells.shape
         for n in range(9):
             self.cells[(x - 1 + n%3) % cols, (y - 1 + n//3) % rows] += 2 * difference
+
+
+    @ti.func
+    def count_neighbours(self, x: int, y: int) -> int:
+        count = 0
+        cols, rows = self.cells.shape
+
+        for n in range(9):
+            count += self.cells[(x - 1 + n%3) % cols, (y - 1 + n//3) % rows]
