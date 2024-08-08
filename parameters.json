@@ -2,7 +2,7 @@
 	"columns": 1024,
 	"rows": 512,
 	"size": 1,
-	"arch": "gpu",
+	"arch": "cpu",
 	"profiling": false,
 
 	"alive": [255, 255, 255],
