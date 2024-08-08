@@ -127,7 +127,7 @@ class Field:
 
 
     @ti.func
-    def edit_neighbours_after(self, difference: ti.int32, x: int, y: int):
+    def edit_neighbours_after(self, difference: ti.int32, x: int, y: int): # type: ignore
         self.cells_after[x, y] += difference
         cols, rows = self.cells_after.shape
         for n in range(9):
@@ -135,7 +135,7 @@ class Field:
 
             
     @ti.func
-    def edit_neighbours(self, difference: ti.int32, x: int, y: int):
+    def edit_neighbours(self, difference: ti.int32, x: int, y: int): # type: ignore
         self.cells[x, y] += difference
         cols, rows = self.cells.shape
         for n in range(9):
