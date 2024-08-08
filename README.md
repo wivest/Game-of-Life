@@ -91,3 +91,7 @@ By editing parameters in [`parameters.json`](parameters.json) you can customize 
 | `dead`       | `Array`  | Dead cell color in RGB format.<br>_Default: `[0, 0, 0]`_                                        |
 | `highlight`  | `Array`  | Highlighted cell color in RGB format.<br>_Default: `[50, 50, 50]`_                              |
 | `percentage` | `float`  | Percentage of alive cells when randomizing field.<br>_Default: `0.1`_                           |
+
+## Known issues
+
+**When using `gpu` backend architecture**, there might be some cells with corrupted data. To prevent this, avoid fast drawing and large-sized brush. Corrupted cells are highlighted with red color. Reset field to fix data.
