@@ -85,7 +85,7 @@ By editing parameters in [`parameters.json`](parameters.json) you can customize 
 | `columns`    | `int`    | Number of field columns.<br>_Default: `1024`_                                                   |
 | `rows`       | `int`    | Number of field rows.<br>_Default: `512`_                                                       |
 | `size`       | `int`    | Size of a cell in pixels.<br>_Default: `1`_                                                     |
-| `arch`       | `string` | Backend architecture used by Taichi.<br>_Suggested: `"gpu"` and `"cpu"`._<br>_Default: `"gpu"`_ |
+| `arch`       | `string` | Backend architecture used by Taichi.<br>_Suggested: `"gpu"` and `"cpu"`._<br>_Default: `"cpu"`_ |
 | `profiling`  | `bool`   | Enable profiling of Taichi kernel in form of terminal output.<br>_Default: `false`_             |
 | `alive`      | `Array`  | Alive cell color in RGB format.<br>_Default: `[255, 255, 255]`_                                 |
 | `dead`       | `Array`  | Dead cell color in RGB format.<br>_Default: `[0, 0, 0]`_                                        |
